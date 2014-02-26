@@ -1,9 +1,9 @@
-/vendor
 /bootstrap/compiled.php
 /app/views/dist
+/public/dist
 /public/bower_components
 /node_modules
-/dist
+/vendor
 /.tmp
 composer.phar
 composer.lock
