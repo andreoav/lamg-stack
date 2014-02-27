@@ -11,11 +11,16 @@ angular.module('lamg-stack', [
       .when('/', {
         templateUrl: 'partials/main',
         controller: 'MainController'
+
+      })
+      .when('/login', {
+        templateUrl: 'partials/login',
+        controller: 'LoginController'
       });
 
     $locationProvider.html5Mode(true);
 
-      // Intercept 401s and redirect you to login
+    // Intercept 401s and redirect you to login
     $httpProvider.interceptors.push(['$q', '$location', function($q, $location) {
       return {
         'responseError': function(response) {
@@ -31,15 +36,15 @@ angular.module('lamg-stack', [
     }]);
 
   })
-  .run(function ($rootScope, $location) { // TODO: Add Auth service
+  .run(function ($rootScope, $location, Auth) { // TODO: Add Auth service
 
     // Application name
     $rootScope.appName = 'L.A.M.G Stack';
 
     // Redirect to login if route requires auth and you're not logged in
-    $rootScope.$on('$routeChangeStart', function (event, next) {
+    /*$rootScope.$on('$routeChangeStart', function (event, next) {
       if (next.authenticate && !Auth.isLoggedIn()) {
         $location.path('/login');
       }
-    });
+    });*/
   });

@@ -11,18 +11,22 @@
 |
 */
 
-Route::get('partials/{view}', function($view)
+// Api routes
+
+
+// Partial rendering
+Route::get('partials/{view?}', function($view)
 {
 	// Set the path depending on the application environment
 	$partialFile = 'partials.' . (App::environment('production') ? 'dist.' . $view : $view);
 
 	if (View::exists($partialFile))
 	{
-		return View::make($partialFile)->render();
+		return View::make($partialFile);
 	}
 
 	return Response::make($partialFile . ' - Not found - ' . App::environment(), 404);
-});
+})->where('view', '.*');
 
 // Loads the single page application view
 Route::any('{path?}', function($path) { return View::make('index'); })->where('path', '.*');
