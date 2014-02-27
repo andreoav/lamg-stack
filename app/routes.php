@@ -24,8 +24,5 @@ Route::get('partials/{view}', function($view)
 	return Response::make($partialFile . ' - Not found - ' . App::environment(), 404);
 });
 
-// Loads our SPA file
-Route::get('/', function()
-{
-	return View::make('index');
-});
+// Loads the single page application view
+Route::any('{path?}', function($path) { return View::make('index'); })->where('path', '.*');
