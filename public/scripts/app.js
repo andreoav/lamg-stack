@@ -33,9 +33,11 @@ angular.module('lamg-stack', [
   })
   .run(function ($rootScope, $location) { // TODO: Add Auth service
 
+    // Application name
+    $rootScope.appName = 'L.A.M.G Stack';
+
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function (event, next) {
-      
       if (next.authenticate && !Auth.isLoggedIn()) {
         $location.path('/login');
       }
