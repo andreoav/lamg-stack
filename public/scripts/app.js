@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('app1', [
-  'ngCookie',
+angular.module('lamg-stack', [
+  'ngCookies',
   'ngResource',
   'ngSanitize',
   'ngRoute'
@@ -31,7 +31,7 @@ angular.module('app1', [
     }]);
 
   })
-  .run(function ($rootScope, $location, Auth) {
+  .run(function ($rootScope, $location) { // TODO: Add Auth service
 
     // Redirect to login if route requires auth and you're not logged in
     $rootScope.$on('$routeChangeStart', function (event, next) {
