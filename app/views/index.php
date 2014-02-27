@@ -1,11 +1,16 @@
 <!doctype html>
-<html>
+<html data-ng-app="lamg-stack">
 <head>
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <!-- endbower -->    
 </head>
 <body>
+
+    <!-- Angular View -->
+    <section data-ng-view />
+    <!-- endAngular View -->
+
     <!-- build:js(public/app) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -21,6 +26,7 @@
 
     <!-- build:js({.tmp,public/app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
     <!-- endbuild -->
 </body>
 </html>
