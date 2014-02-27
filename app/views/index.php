@@ -1,23 +1,23 @@
 <!doctype html>
-<html data-ng-app="lamg-stack" lang="en">
+<html ng-app="lamg-stack" lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{ appName }}</title>    
-        <!-- build:css(public/app) -->
+        <title>L.A.M.G Stack Bootstrap Site</title>    
+        <!-- build:css(public/app) styles/vendor.css -->
         <!-- bower:css -->
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
         <!-- endbower -->
         <!-- endbuild -->
-        <!-- build:css({.tmp,public/app}) -->
+        <!-- build:css({.tmp,public/app}) styles/applications.css-->
         <link rel="stylesheet" href="styles/main.css">
         <link rel="stylesheet" href="styles/bootstrap.override.css">
         <!-- endbuild -->
     </head>
     <body>               
         <!-- Angular View -->
-        <div class="container" data-ng-view ></div>
+        <div class="container" ng-view ></div>
         <!-- endAngular View -->
 
         <!--[if lt IE 9]>
