@@ -34,18 +34,18 @@ module.exports = function (grunt) {
 
     watch: {
       js: {
-        files: ['<%= app.dev %>/scripts/{,*//*}*.js'],
+        files: ['<%= app.dev %>/scripts/**/*.js'],
         tasks: ['newer:jshint:all'],
         options: {
           livereload: true
         }
       },
       jsTest: {
-        files: ['<%= app.dev %>/test/spec/{,*/}*.js'],
+        files: ['<%= app.dev %>/test/spec/**/*.js'],
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= app.dev %>/styles/{,*/}*.css'],
+        files: ['<%= app.dev %>/styles/**/*.css'],
         tasks: ['newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
@@ -53,23 +53,23 @@ module.exports = function (grunt) {
       },
       livereload: {
         files: [
-          '<%= laravel.path %>/views/{,*//*}*.{php,blade.php}',
-          '{.tmp,<%= app.dev %>}/styles/{,*//*}*.css',
-          '{.tmp,<%= app.dev %>}/scripts/{,*//*}*.js',
-          '<%= app.dev %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= laravel.path %>/views/**/*.{php,blade.php}',
+          '{.tmp,<%= app.dev %>}/styles/**/*.css',
+          '{.tmp,<%= app.dev %>}/scripts/**/*.js',
+          '<%= app.dev %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}'
         ],
         options: {
           livereload: true
-        },
-        laravel: {
-          files: [
-            '<%= laravel.path %>/**/*.{php,blade.php}'
-          ],
-          tasks: [],
-          options: {
-            livereload: true,
-            nospawn: true
-          }
+        }
+      },
+      laravel: {
+        files: [
+          '<%= laravel.path %>/**/*.{php,blade.php}'
+        ],
+        tasks: [], // Add unit tests
+        options: {
+          livereload: true,
+          nospawn: true
         }
       }
     },
@@ -80,13 +80,13 @@ module.exports = function (grunt) {
         reporter: require('jshint-stylish')
       },
       all: [
-        '<%= app.dev %>/scripts/{,*/}*.js'
+        '<%= app.dev %>/scripts/**/*.js'
       ],
       test: {
         options: {
           jshintrc: '<%= app.dev %>/test/.jshintrc'
         },
-        src: ['<%= app.dev %>/test/spec/{,*/}*.js']
+        src: ['<%= app.dev %>/test/spec/**/*.js']
       }
     },
 
@@ -113,7 +113,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '.tmp/styles',
-          src: '{,*/}*.css',
+          src: '**/*.css',
           dest: '.tmp/styles'
         }]
       }
@@ -132,9 +132,9 @@ module.exports = function (grunt) {
       dist: {
         files: {
           src: [
-            '<%= app.dist %>/scripts/{,*/}*.js',
-            '<%= app.dist %>/styles/{,*/}*.css',
-            '<%= app.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+            '<%= app.dist %>/scripts/**/*.js',
+            '<%= app.dist %>/styles/**/*.css',
+            '<%= app.dist %>/images/**/*.{png,jpg,jpeg,gif,webp,svg}',
             '<%= app.dist %>/styles/fonts/*'
           ]
         }
@@ -153,8 +153,8 @@ module.exports = function (grunt) {
 
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
-      html: ['<%= laravel.path %>/views/dist/{,*/}*.{php,blade.php}'],
-      css: ['<%= app.dist %>/public/styles/{,*/}*.css'],
+      html: ['<%= laravel.path %>/views/dist/**/*.{php,blade.php}'],
+      css: ['<%= app.dist %>/public/styles/**/*.css'],
       options: {
         assetsDirs: ['<%= app.dist %>/public']
       }
@@ -165,7 +165,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= app.dev %>/images',
-          src: '{,*/}*.{png,jpg,jpeg,gif}',
+          src: '**/*.{png,jpg,jpeg,gif}',
           dest: '<%= app.dist %>/images'
         }]
       }
@@ -176,7 +176,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: '<%= app.dev %>/images',
-          src: '{,*/}*.svg',
+          src: '**/*.svg',
           dest: '<%= app.dist %>/images'
         }]
       }
@@ -204,7 +204,7 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             '.htaccess',
             'bower_components/**/*',
-            'images/{,*/}*.{webp}',
+            'images/**/*.{webp}',
             'fonts/**/*'
           ]
         },{
@@ -232,7 +232,7 @@ module.exports = function (grunt) {
         expand: true,
         cwd: '<%= app.dev %>/styles',
         dest: '.tmp/styles',
-        src: '{,*/}*.css'
+        src: '**/*.css'
       }
     },
 
@@ -260,16 +260,6 @@ module.exports = function (grunt) {
     }
 
   });
-
-  grunt.registerTask('serve', [
-    'clean:server',
-    'bowerInstall',
-    'concurrent:server',
-    'autoprefixer',
-    //'shell:laravel',
-    'open',
-    'watch'
-  ]);
 
   grunt.registerTask('test', function() {
     grunt.log.ok('Running tests');

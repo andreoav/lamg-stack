@@ -1,8 +1,15 @@
 {
   "name": "lamg-stack",
-  "version": "0.1.0",
   "description": "LAMG - Laravel, AngularJS, MongoDB & Grunt Bootstrapper.",
+  "version": "0.1.0",
   "main": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/andreoav/lamg-stack.git"
+  },
+  "bugs": {
+    "url": "http://github.com/andreoav/issues"
+  },
   "scripts": {
     "test": "grunt test"
   },
